@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project JuWaPfl with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/JuWaPfl.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="ch.wsl.fps.juwapfl.gui.main.JuWaPflMainWindow"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ avalon-framework-4.2.0.jar batik-all-1.10.jar commons-io-1.3.1.jar commons-logging-1.0.4.jar fop.jar xmlgraphics-commons-2.3.jar jfreechart-1.5.3.jar"/>
+            </manifest>
+            <zipfileset src="lib/jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <zipfileset dir="${dir.jarfile}/lib/fop" includes="avalon-framework-4.2.0.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib/fop" includes="batik-all-1.10.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib/fop" includes="commons-io-1.3.1.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib/fop" includes="commons-logging-1.0.4.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib/fop" includes="fop.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib/fop" includes="xmlgraphics-commons-2.3.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="jfreechart-1.5.3.jar"/>
+            <zipfileset dir="Dokumentation" prefix="Dokumentation" />
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-templates.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-austrichtern.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-begehungswege.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-pflanzung.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-rueckegassen.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-schneegleiten.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-wertastung.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-wildschutz.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-zbaum.xsl"/>
+            <zipfileset dir="data" prefix="data/" includes="info.png"/>
+            <zipfileset dir="data" prefix="data/" includes="WSL64.png"/>
+        </jar>
+    </target>
+</project>
