@@ -24,54 +24,57 @@ import ch.wsl.fps.juwapfl.Messages;
  */
 public class PflanzungModel extends AbstractModel {
 
-	private static final double zeitaufwandPflanzungBuchenbuehlerSchraegpflanzungEinfach_PflProH = 120;
-	private static final double zeitaufwandPflanzungBuchenbuehlerSchraegpflanzungMittel_PflProH = 100;
-	private static final double zeitaufwandPflanzungBuchenbuehlerSchraegpflanzungSchwierig_PflProH = 80;
+	private static final double zeitaufwandPflanzungBuchenbuehlerEinfach_PflProH = 120;
+	private static final double zeitaufwandPflanzungBuchenbuehlerMittel_PflProH = 100;
+	private static final double zeitaufwandPflanzungBuchenbuehlerSchwierig_PflProH = 80;
 
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenKlemmSpaltpflanzungEinfach_PflProH = 81;
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenKlemmSpaltpflanzungMittel_PflProH = 65;
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenKlemmSpaltpflanzungSchwierig_PflProH = 49;
+	private static final double zeitaufwandPflanzungRhodenerKlemmSpaltpflanzungEinfach_PflProH = 81;
+	private static final double zeitaufwandPflanzungRhodenerKlemmSpaltpflanzungMittel_PflProH = 65;
+	private static final double zeitaufwandPflanzungRhodenerKlemmSpaltpflanzungSchwierig_PflProH = 49;
 
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenLochpflanzungEinfach_PflProH = 65;
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenLochpflanzungMittel_PflProH = 43;
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenLochpflanzungSchwierig_PflProH = 27;
+	private static final double zeitaufwandPflanzungRhodenerLochpflanzungEinfach_PflProH = 65;
+	private static final double zeitaufwandPflanzungRhodenerLochpflanzungMittel_PflProH = 43;
+	private static final double zeitaufwandPflanzungRhodenerLochpflanzungSchwierig_PflProH = 27;
 
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenTopfpflanzungEinfach_PflProH = 65;
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenTopfpflanzungMittel_PflProH = 52;
-	private static final double zeitaufwandPflanzungRhodenerPflanzverfahrenTopfpflanzungSchwierig_PflProH = 37;
+	private static final double zeitaufwandPflanzungRhodenerTopfpflanzungEinfach_PflProH = 65;
+	private static final double zeitaufwandPflanzungRhodenerTopfpflanzungMittel_PflProH = 52;
+	private static final double zeitaufwandPflanzungRhodenerTopfpflanzungSchwierig_PflProH = 37;
 
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenKlemmSpaltpflanzungEinfach_PflProH = 65;
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenKlemmSpaltpflanzungMittel_PflProH = 54;
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenKlemmSpaltpflanzungSchwierig_PflProH = 43;
+	private static final double zeitaufwandPflanzungHohlspatenKlemmSpaltpflanzungEinfach_PflProH = 65;
+	private static final double zeitaufwandPflanzungHohlspatenKlemmSpaltpflanzungMittel_PflProH = 54;
+	private static final double zeitaufwandPflanzungHohlspatenKlemmSpaltpflanzungSchwierig_PflProH = 43;
 
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenLochpflanzungEinfach_PflProH = 54;
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenLochpflanzungMittel_PflProH = 43;
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenLochpflanzungSchwierig_PflProH = 27;
+	private static final double zeitaufwandPflanzungHohlspatenLochpflanzungEinfach_PflProH = 54;
+	private static final double zeitaufwandPflanzungHohlspatenLochpflanzungMittel_PflProH = 43;
+	private static final double zeitaufwandPflanzungHohlspatenLochpflanzungSchwierig_PflProH = 27;
 
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenTopfpflanzungEinfach_PflProH = 60;
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenTopfpflanzungMittel_PflProH = 45;
-	private static final double zeitaufwandPflanzungHohlspatenverfahrenTopfpflanzungSchwierig_PflProH = 30;
+	private static final double zeitaufwandPflanzungHohlspatenTopfpflanzungEinfach_PflProH = 60;
+	private static final double zeitaufwandPflanzungHohlspatenTopfpflanzungMittel_PflProH = 45;
+	private static final double zeitaufwandPflanzungHohlspatenTopfpflanzungSchwierig_PflProH = 30;
 
-	private static final double zeitaufwandPflanzungWinkelpflanzungNadelholz_PflProH = 100;
-	private static final double zeitaufwandPflanzungWinkelpflanzungLaubholz_PflProH = 120;
+	private static final double zeitaufwandPflanzungWiedehopfhaueWinkelpflanzungNadelholz_PflProH = 100;
+	private static final double zeitaufwandPflanzungWiedehopfhaueWinkelpflanzungLaubholz_PflProH = 120;
+	private static final double zeitaufwandPflanzungWiedehopfhaueLochpflanzungEinfach_PflProH = 56;
+	private static final double zeitaufwandPflanzungWiedehopfhaueLochpflanzungMittel_PflProH = 45;
+	private static final double zeitaufwandPflanzungWiedehopfhaueLochpflanzungSchwierig_PflProH = 28;
 
-	private static final double zeitaufwandPflanzungLochpflanzungMitErdbohrerManuellEinfach_PflProH = 27;
-	private static final double zeitaufwandPflanzungLochpflanzungMitErdbohrerManuellMittel_PflProH = 14;
-	private static final double zeitaufwandPflanzungLochpflanzungMitErdbohrerManuellSchwierig_PflProH = 10;
+	private static final double zeitaufwandPflanzungErdbohrerManuellEinfach_PflProH = 27;
+	private static final double zeitaufwandPflanzungErdbohrerManuellMittel_PflProH = 14;
+	private static final double zeitaufwandPflanzungErdbohrerManuellSchwierig_PflProH = 10;
 
-	private static final double zeitaufwandPflanzungLochpflanzungMitErdbohrerMaschinellEinfach_PflProH = 71;
-	private static final double zeitaufwandPflanzungLochpflanzungMitErdbohrerMaschinellMittel_PflProH = 40;
-	private static final double zeitaufwandPflanzungLochpflanzungMitErdbohrerMaschinellSchwierig_PflProH = 29;
+	private static final double zeitaufwandPflanzungErdbohrerMaschinellEinfach_PflProH = 71;
+	private static final double zeitaufwandPflanzungErdbohrerMaschinellMittel_PflProH = 40;
+	private static final double zeitaufwandPflanzungErdbohrerMaschinellSchwierig_PflProH = 29;
 
-	private static final double zeitaufwandPflanzungLochpflanzungMitAnbaugeraetEinfach_PflProH = 143;
-	private static final double zeitaufwandPflanzungLochpflanzungMitAnbaugeraetMittel_PflProH = 77;
-	private static final double zeitaufwandPflanzungLochpflanzungMitAnbaugeraetSchwierig_PflProH = 56;
+	private static final double zeitaufwandPflanzungAnbaugeraetEinfach_PflProH = 143;
+	private static final double zeitaufwandPflanzungAnbaugeraetMittel_PflProH = 77;
+	private static final double zeitaufwandPflanzungAnbaugeraetSchwierig_PflProH = 56;
 	
 
 	private int anzahlPflanzen;
 	
 	@SuppressWarnings("unused") // wird aktuell nur im GUI zur Anzeige der korrekten default-Werte benötigt.
-	private Pflanzverfahren pflanzverfahren;
+	private Pflanzwerkzeug pflanzwerkzeug;
 	
 	private Pflanztechnik pflanztechnik;
 	
@@ -105,8 +108,8 @@ public class PflanzungModel extends AbstractModel {
 		this.anzahlPflanzen = anzahlPflanzen;
 	}
 
-	public void setPflanzverfahren(Pflanzverfahren pflanzverfahren) {
-		this.pflanzverfahren = pflanzverfahren;
+	public void setPflanzwerkzeug(Pflanzwerkzeug pflanzwerkzeug) {
+		this.pflanzwerkzeug = pflanzwerkzeug;
 	}
 
 	public void setPflanztechnik(Pflanztechnik pflanztechnik) {
@@ -199,48 +202,49 @@ public class PflanzungModel extends AbstractModel {
 	}
 
 	
-	public enum Pflanzverfahren {
-		BUCHENBUEHLER_SCHRAEGPFLANZUNG,
-		RHODENER_PFLANZVERFAHREN,
-		HOHLSPATEN_VERFAHREN,
-		WINKELPFLANZUNG,
-		LOCHPFLANZUNG_MIT_ERDBOHRER,
-		LOCHPFLANZUNG_MIT_ANBAUGERAET;
+	public enum Pflanzwerkzeug {
+		BUCHENBUEHLER_PFLANZHAUE,
+		RHODENER_PFLANZHAUE,
+		HOHLSPATEN,
+		WIEDEHOPFHAUE,
+		ERDBOHRER,
+		ANBAUGERAET;
 		
 	@Override
 		public String toString() {
 			switch(this) {
-			case BUCHENBUEHLER_SCHRAEGPFLANZUNG:
-				return Messages.getString("Pflanzung.Pflanzverfahren.BuchenbuehlerSchraegpflanzung"); //$NON-NLS-1$
+			case BUCHENBUEHLER_PFLANZHAUE:
+				return Messages.getString("Pflanzung.Pflanzwerkzeug.BuchenbuehlerPflanzhaue"); //$NON-NLS-1$
 				
-			case RHODENER_PFLANZVERFAHREN:
-				return Messages.getString("Pflanzung.Pflanzverfahren.RhodenerPflanzverfahren"); //$NON-NLS-1$
+			case RHODENER_PFLANZHAUE:
+				return Messages.getString("Pflanzung.Pflanzwerkzeug.RhodenerPflanzhaue"); //$NON-NLS-1$
 				
-			case HOHLSPATEN_VERFAHREN:
-				return Messages.getString("Pflanzung.Pflanzverfahren.HohlspatenVerfahren"); //$NON-NLS-1$
+			case HOHLSPATEN:
+				return Messages.getString("Pflanzung.Pflanzwerkzeug.Hohlspaten"); //$NON-NLS-1$
 				
-			case WINKELPFLANZUNG:
-				return Messages.getString("Pflanzung.Pflanzverfahren.Winkelpflanzung"); //$NON-NLS-1$
+			case WIEDEHOPFHAUE:
+				return Messages.getString("Pflanzung.Pflanzwerkzeug.Wiedehopfhaue"); //$NON-NLS-1$
 				
-			case LOCHPFLANZUNG_MIT_ERDBOHRER:
-				return Messages.getString("Pflanzung.Pflanzverfahren.LochpflanzungErdbohrer"); //$NON-NLS-1$
+			case ERDBOHRER:
+				return Messages.getString("Pflanzung.Pflanzwerkzeug.Erdbohrer"); //$NON-NLS-1$
 				
-			case LOCHPFLANZUNG_MIT_ANBAUGERAET:
-				return Messages.getString("Pflanzung.Pflanzverfahren.LochpflanzungAnbaugeraet"); //$NON-NLS-1$
+			case ANBAUGERAET:
+				return Messages.getString("Pflanzung.Pflanzwerkzeug.Anbaugeraet"); //$NON-NLS-1$
 			
 			default:
 				throw new RuntimeException(this.name());
 			}
 		}
 
-		public static Pflanzverfahren getDefault() {
-			return BUCHENBUEHLER_SCHRAEGPFLANZUNG;
+		public static Pflanzwerkzeug getDefault() {
+			return BUCHENBUEHLER_PFLANZHAUE;
 		}
 	}
 	
 	
 	public enum Pflanztechnik {
 		KLEMM_ODER_SPALTPFLANZUNG,
+		WINKELPFLANZUNG,
 		LOCHPFLANZUNG,
 		TOPFPFLANZUNG,
 		MANUELL,
@@ -251,6 +255,9 @@ public class PflanzungModel extends AbstractModel {
 			switch(this) {
 			case KLEMM_ODER_SPALTPFLANZUNG:
 				return Messages.getString("Pflanzung.Pflanztechnik.KlemmSpaltpflanzung"); //$NON-NLS-1$
+
+			case WINKELPFLANZUNG:
+				return Messages.getString("Pflanzung.Pflanztechnik.Winkelpflanzung"); //$NON-NLS-1$
 				
 			case LOCHPFLANZUNG:
 				return Messages.getString("Pflanzung.Pflanztechnik.Lochpflanzung"); //$NON-NLS-1$
@@ -273,26 +280,26 @@ public class PflanzungModel extends AbstractModel {
 			return KLEMM_ODER_SPALTPFLANZUNG;
 		}
 		
-		public static Pflanztechnik[] getPflanztechniken(Pflanzverfahren pflanzverfahren) {
-			switch(pflanzverfahren) {
-			case BUCHENBUEHLER_SCHRAEGPFLANZUNG:
+		public static Pflanztechnik[] getPflanztechniken(Pflanzwerkzeug pflanzwerkzeug) {
+			switch(pflanzwerkzeug) {
+			case BUCHENBUEHLER_PFLANZHAUE:
 				return new Pflanztechnik[] {KLEMM_ODER_SPALTPFLANZUNG};
 				
-			case RHODENER_PFLANZVERFAHREN:
-			case HOHLSPATEN_VERFAHREN:
+			case RHODENER_PFLANZHAUE:
+			case HOHLSPATEN:
 				return new Pflanztechnik[] {KLEMM_ODER_SPALTPFLANZUNG, LOCHPFLANZUNG, TOPFPFLANZUNG};
 				
-			case WINKELPFLANZUNG:
-				return new Pflanztechnik[] {KLEMM_ODER_SPALTPFLANZUNG};
+			case WIEDEHOPFHAUE:
+				return new Pflanztechnik[] {WINKELPFLANZUNG, LOCHPFLANZUNG};
 				
-			case LOCHPFLANZUNG_MIT_ERDBOHRER:
+			case ERDBOHRER:
 				return new Pflanztechnik[] {MANUELL, MASCHINELL};
 				
-			case LOCHPFLANZUNG_MIT_ANBAUGERAET:
+			case ANBAUGERAET:
 				return new Pflanztechnik[] {MASCHINELL};
 				
 			default:
-				throw new RuntimeException(pflanzverfahren.name());
+				throw new RuntimeException(pflanzwerkzeug.name());
 			}
 		}
 	}
@@ -352,13 +359,13 @@ public class PflanzungModel extends AbstractModel {
 
 
 
-	public static double getDefaultKostenProPflanze(Pflanzverfahren pflanzverfahren, Pflanztechnik pflanztechnik) {
-		switch(pflanzverfahren) {
-		case BUCHENBUEHLER_SCHRAEGPFLANZUNG:
+	public static double getDefaultKostenProPflanze(Pflanzwerkzeug pflanzwerkzeug, Pflanztechnik pflanztechnik) {
+		switch(pflanzwerkzeug) {
+		case BUCHENBUEHLER_PFLANZHAUE:
 			return 2.40;
 			
-		case RHODENER_PFLANZVERFAHREN:
-		case HOHLSPATEN_VERFAHREN:
+		case RHODENER_PFLANZHAUE:
+		case HOHLSPATEN:
 			if (pflanztechnik == Pflanztechnik.KLEMM_ODER_SPALTPFLANZUNG) {
 				return 2.40;
 			}
@@ -369,51 +376,51 @@ public class PflanzungModel extends AbstractModel {
 				return 3.50;
 			}
 			else {
-				throw new RuntimeException(pflanzverfahren.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
+				throw new RuntimeException(pflanzwerkzeug.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
 			}
 			
-		case WINKELPFLANZUNG:
+		case WIEDEHOPFHAUE:
 			return 2.40;
 			
-		case LOCHPFLANZUNG_MIT_ERDBOHRER:
-		case LOCHPFLANZUNG_MIT_ANBAUGERAET:
+		case ERDBOHRER:
+		case ANBAUGERAET:
 			return 3.50;
 			
 		default:
-			throw new RuntimeException(pflanzverfahren.name());
+			throw new RuntimeException(pflanzwerkzeug.name());
 		
 		}
 	}
 	
 
-	public static double getDefaultZeitaufwandPflanzung_PflProH(Pflanzverfahren pflanzverfahren, Pflanztechnik pflanztechnik, Baumart baumart, Schwierigkeitsgrad schwierigkeit, PflanzungWinkelpflanzungModel winkelpflanzungModel) {
-		switch(pflanzverfahren) {
-		case BUCHENBUEHLER_SCHRAEGPFLANZUNG:
+	public static double getDefaultZeitaufwandPflanzung_PflProH(Pflanzwerkzeug pflanzwerkzeug, Pflanztechnik pflanztechnik, Baumart baumart, Schwierigkeitsgrad schwierigkeit, PflanzungWinkelpflanzungModel winkelpflanzungModel) {
+		switch(pflanzwerkzeug) {
+		case BUCHENBUEHLER_PFLANZHAUE:
 			switch(schwierigkeit) {
 			case EINFACH:
-				return zeitaufwandPflanzungBuchenbuehlerSchraegpflanzungEinfach_PflProH;
+				return zeitaufwandPflanzungBuchenbuehlerEinfach_PflProH;
 				
 			case MITTEL:
-				return zeitaufwandPflanzungBuchenbuehlerSchraegpflanzungMittel_PflProH;
+				return zeitaufwandPflanzungBuchenbuehlerMittel_PflProH;
 				
 			case SCHWIERIG:
-				return zeitaufwandPflanzungBuchenbuehlerSchraegpflanzungSchwierig_PflProH;
+				return zeitaufwandPflanzungBuchenbuehlerSchwierig_PflProH;
 				
 			default:
 				throw new RuntimeException(schwierigkeit.name());
 			}
 			
-		case RHODENER_PFLANZVERFAHREN:
+		case RHODENER_PFLANZHAUE:
 			if (pflanztechnik == Pflanztechnik.KLEMM_ODER_SPALTPFLANZUNG) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenKlemmSpaltpflanzungEinfach_PflProH;
+					return zeitaufwandPflanzungRhodenerKlemmSpaltpflanzungEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenKlemmSpaltpflanzungMittel_PflProH;
+					return zeitaufwandPflanzungRhodenerKlemmSpaltpflanzungMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenKlemmSpaltpflanzungSchwierig_PflProH;
+					return zeitaufwandPflanzungRhodenerKlemmSpaltpflanzungSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
@@ -422,13 +429,13 @@ public class PflanzungModel extends AbstractModel {
 			else if (pflanztechnik == Pflanztechnik.LOCHPFLANZUNG) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenLochpflanzungEinfach_PflProH;
+					return zeitaufwandPflanzungRhodenerLochpflanzungEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenLochpflanzungMittel_PflProH;
+					return zeitaufwandPflanzungRhodenerLochpflanzungMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenLochpflanzungSchwierig_PflProH;
+					return zeitaufwandPflanzungRhodenerLochpflanzungSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
@@ -437,33 +444,33 @@ public class PflanzungModel extends AbstractModel {
 			else if (pflanztechnik == Pflanztechnik.TOPFPFLANZUNG) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenTopfpflanzungEinfach_PflProH;
+					return zeitaufwandPflanzungRhodenerTopfpflanzungEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenTopfpflanzungMittel_PflProH;
+					return zeitaufwandPflanzungRhodenerTopfpflanzungMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungRhodenerPflanzverfahrenTopfpflanzungSchwierig_PflProH;
+					return zeitaufwandPflanzungRhodenerTopfpflanzungSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
 				}
 			}
 			else {
-				throw new RuntimeException(pflanzverfahren.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
+				throw new RuntimeException(pflanzwerkzeug.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
 			}
 			
-		case HOHLSPATEN_VERFAHREN:
+		case HOHLSPATEN:
 			if (pflanztechnik == Pflanztechnik.KLEMM_ODER_SPALTPFLANZUNG) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungHohlspatenverfahrenKlemmSpaltpflanzungEinfach_PflProH;
+					return zeitaufwandPflanzungHohlspatenKlemmSpaltpflanzungEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungHohlspatenverfahrenKlemmSpaltpflanzungMittel_PflProH;
+					return zeitaufwandPflanzungHohlspatenKlemmSpaltpflanzungMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungHohlspatenverfahrenKlemmSpaltpflanzungSchwierig_PflProH;
+					return zeitaufwandPflanzungHohlspatenKlemmSpaltpflanzungSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
@@ -472,13 +479,13 @@ public class PflanzungModel extends AbstractModel {
 			else if (pflanztechnik == Pflanztechnik.LOCHPFLANZUNG) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungHohlspatenverfahrenLochpflanzungEinfach_PflProH;
+					return zeitaufwandPflanzungHohlspatenLochpflanzungEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungHohlspatenverfahrenLochpflanzungMittel_PflProH;
+					return zeitaufwandPflanzungHohlspatenLochpflanzungMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungHohlspatenverfahrenLochpflanzungSchwierig_PflProH;
+					return zeitaufwandPflanzungHohlspatenLochpflanzungSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
@@ -487,36 +494,56 @@ public class PflanzungModel extends AbstractModel {
 			else if (pflanztechnik == Pflanztechnik.TOPFPFLANZUNG) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungHohlspatenverfahrenTopfpflanzungEinfach_PflProH;
+					return zeitaufwandPflanzungHohlspatenTopfpflanzungEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungHohlspatenverfahrenTopfpflanzungMittel_PflProH;
+					return zeitaufwandPflanzungHohlspatenTopfpflanzungMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungHohlspatenverfahrenTopfpflanzungSchwierig_PflProH;
+					return zeitaufwandPflanzungHohlspatenTopfpflanzungSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
 				}
 			}
 			else {
-				throw new RuntimeException(pflanzverfahren.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
+				throw new RuntimeException(pflanzwerkzeug.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
 			}
 			
-		case WINKELPFLANZUNG:
-			return getDefaultZeitaufwandWinkelpflanzung_PflProH(baumart, winkelpflanzungModel);
+		case WIEDEHOPFHAUE:
+			if (pflanztechnik == Pflanztechnik.WINKELPFLANZUNG) {
+				return getDefaultZeitaufwandWinkelpflanzung_PflProH(baumart, winkelpflanzungModel);
+			}
+			else if (pflanztechnik == Pflanztechnik.LOCHPFLANZUNG) {
+				switch(schwierigkeit) {
+				case EINFACH:
+					return zeitaufwandPflanzungWiedehopfhaueLochpflanzungEinfach_PflProH;
+					
+				case MITTEL:
+					return zeitaufwandPflanzungWiedehopfhaueLochpflanzungMittel_PflProH;
+					
+				case SCHWIERIG:
+					return zeitaufwandPflanzungWiedehopfhaueLochpflanzungSchwierig_PflProH;
+					
+				default:
+					throw new RuntimeException(schwierigkeit.name());
+				}
+			}
+			else {
+				throw new RuntimeException(pflanztechnik.name());
+			}
 			
-		case LOCHPFLANZUNG_MIT_ERDBOHRER:
+		case ERDBOHRER:
 			if (pflanztechnik == Pflanztechnik.MANUELL) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungLochpflanzungMitErdbohrerManuellEinfach_PflProH;
+					return zeitaufwandPflanzungErdbohrerManuellEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungLochpflanzungMitErdbohrerManuellMittel_PflProH;
+					return zeitaufwandPflanzungErdbohrerManuellMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungLochpflanzungMitErdbohrerManuellSchwierig_PflProH;
+					return zeitaufwandPflanzungErdbohrerManuellSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
@@ -525,39 +552,39 @@ public class PflanzungModel extends AbstractModel {
 			else if (pflanztechnik == Pflanztechnik.MASCHINELL) {
 				switch(schwierigkeit) {
 				case EINFACH:
-					return zeitaufwandPflanzungLochpflanzungMitErdbohrerMaschinellEinfach_PflProH;
+					return zeitaufwandPflanzungErdbohrerMaschinellEinfach_PflProH;
 					
 				case MITTEL:
-					return zeitaufwandPflanzungLochpflanzungMitErdbohrerMaschinellMittel_PflProH;
+					return zeitaufwandPflanzungErdbohrerMaschinellMittel_PflProH;
 					
 				case SCHWIERIG:
-					return zeitaufwandPflanzungLochpflanzungMitErdbohrerMaschinellSchwierig_PflProH;
+					return zeitaufwandPflanzungErdbohrerMaschinellSchwierig_PflProH;
 					
 				default:
 					throw new RuntimeException(schwierigkeit.name());
 				}
 			}
 			else {
-				throw new RuntimeException(pflanzverfahren.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
+				throw new RuntimeException(pflanzwerkzeug.name() + " " + pflanztechnik.name()); //$NON-NLS-1$
 			}
 			
-		case LOCHPFLANZUNG_MIT_ANBAUGERAET:
+		case ANBAUGERAET:
 			switch(schwierigkeit) {
 			case EINFACH:
-				return zeitaufwandPflanzungLochpflanzungMitAnbaugeraetEinfach_PflProH;
+				return zeitaufwandPflanzungAnbaugeraetEinfach_PflProH;
 				
 			case MITTEL:
-				return zeitaufwandPflanzungLochpflanzungMitAnbaugeraetMittel_PflProH;
+				return zeitaufwandPflanzungAnbaugeraetMittel_PflProH;
 				
 			case SCHWIERIG:
-				return zeitaufwandPflanzungLochpflanzungMitAnbaugeraetSchwierig_PflProH;
+				return zeitaufwandPflanzungAnbaugeraetSchwierig_PflProH;
 				
 			default:
 				throw new RuntimeException(schwierigkeit.name());
 			}
 			
 		default:
-			throw new RuntimeException(pflanzverfahren.name());
+			throw new RuntimeException(pflanzwerkzeug.name());
 		
 		}
 	}
@@ -566,10 +593,10 @@ public class PflanzungModel extends AbstractModel {
 	private static double getDefaultZeitaufwandWinkelpflanzung_PflProH(Baumart baumart, PflanzungWinkelpflanzungModel winkelpflanzungModel) {
 		final double grundgeschwindigkeit_PflProH;
 		if (baumart == Baumart.NADELHOLZ) {
-			grundgeschwindigkeit_PflProH = zeitaufwandPflanzungWinkelpflanzungNadelholz_PflProH;
+			grundgeschwindigkeit_PflProH = zeitaufwandPflanzungWiedehopfhaueWinkelpflanzungNadelholz_PflProH;
 		}
 		else if (baumart == Baumart.LAUBHOLZ) {
-			grundgeschwindigkeit_PflProH = zeitaufwandPflanzungWinkelpflanzungLaubholz_PflProH;
+			grundgeschwindigkeit_PflProH = zeitaufwandPflanzungWiedehopfhaueWinkelpflanzungLaubholz_PflProH;
 		}
 		else {
 			throw new RuntimeException("Baumart: " + baumart); //$NON-NLS-1$
@@ -594,9 +621,9 @@ public class PflanzungModel extends AbstractModel {
 	}
 
 
-	public static int getDefaultAnteilMaschinenlaufzeit_Prz(Pflanzverfahren pflanzverfahren, Pflanztechnik pflanztechnik, Schwierigkeitsgrad schwierigkeit) {
+	public static int getDefaultAnteilMaschinenlaufzeit_Prz(Pflanzwerkzeug pflanzwerkzeug, Pflanztechnik pflanztechnik, Schwierigkeitsgrad schwierigkeit) {
 		if (pflanztechnik == Pflanztechnik.MASCHINELL) {
-			if (pflanzverfahren == Pflanzverfahren.LOCHPFLANZUNG_MIT_ERDBOHRER) {
+			if (pflanzwerkzeug == Pflanzwerkzeug.ERDBOHRER) {
 				switch(schwierigkeit) {
 				case EINFACH:
 					return 40;
@@ -611,7 +638,7 @@ public class PflanzungModel extends AbstractModel {
 					throw new RuntimeException(schwierigkeit.name());
 				}
 			}
-			else if (pflanzverfahren == Pflanzverfahren.LOCHPFLANZUNG_MIT_ANBAUGERAET) {
+			else if (pflanzwerkzeug == Pflanzwerkzeug.ANBAUGERAET) {
 				switch(schwierigkeit) {
 				case EINFACH:
 					return 70;
@@ -627,7 +654,7 @@ public class PflanzungModel extends AbstractModel {
 				}
 			}
 			else {
-				throw new RuntimeException(pflanzverfahren.name());
+				throw new RuntimeException(pflanzwerkzeug.name());
 			}
 		}
 		
@@ -635,11 +662,11 @@ public class PflanzungModel extends AbstractModel {
 	}
 
 
-	public static double getDefaultKostensatzGeraet_proH(Pflanzverfahren pflanzverfahren, Pflanztechnik pflanztechnik) {
-		if (pflanzverfahren == Pflanzverfahren.LOCHPFLANZUNG_MIT_ERDBOHRER && pflanztechnik == Pflanztechnik.MASCHINELL) {
+	public static double getDefaultKostensatzGeraet_proH(Pflanzwerkzeug pflanzwerkzeug, Pflanztechnik pflanztechnik) {
+		if (pflanzwerkzeug == Pflanzwerkzeug.ERDBOHRER && pflanztechnik == Pflanztechnik.MASCHINELL) {
 			return 15;
 		}
-		if (pflanzverfahren == Pflanzverfahren.LOCHPFLANZUNG_MIT_ANBAUGERAET) {
+		if (pflanzwerkzeug == Pflanzwerkzeug.ANBAUGERAET) {
 			return 35;
 		}
 		

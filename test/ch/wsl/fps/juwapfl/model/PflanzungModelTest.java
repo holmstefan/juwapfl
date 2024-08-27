@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Baumart;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanztechnik;
-import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzverfahren;
+import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzwerkzeug;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Schwierigkeitsgrad;
 import ch.wsl.fps.juwapfl.model.PflanzungWinkelpflanzungModel.Bodenvegetation;
 import ch.wsl.fps.juwapfl.model.PflanzungWinkelpflanzungModel.Hangneigung;
@@ -44,7 +44,7 @@ public class PflanzungModelTest extends AbstractJuwapflModelTest {
 		PflanzungModel result = new PflanzungModel();
 		
 		result.setAnzahlPflanzen(			Integer.valueOf(testcase[ 0]) );
-		result.setPflanzverfahren(			Pflanzverfahren.valueOf(testcase[ 1]) );
+		result.setPflanzwerkzeug(			Pflanzwerkzeug.valueOf(testcase[ 1]) );
 		result.setPflanztechnik(			Pflanztechnik.valueOf(testcase[ 2]) );
 		result.setBaumart(					Baumart.valueOf(testcase[ 3]) );
 		result.setSchwierigkeitsgrad(		Schwierigkeitsgrad.valueOf(testcase[ 4]) );

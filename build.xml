@@ -36,6 +36,7 @@
             <zipfileset dir="data" prefix="data/" includes="kalkulation2fo-zbaum.xsl"/>
             <zipfileset dir="data" prefix="data/" includes="info.png"/>
             <zipfileset dir="data" prefix="data/" includes="WSL64.png"/>
+            <zipfileset dir="data" prefix="data/" includes="loadinganimation.gif"/>
         </jar>
     </target>
 </project>

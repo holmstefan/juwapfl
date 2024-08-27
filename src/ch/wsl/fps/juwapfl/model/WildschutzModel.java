@@ -132,7 +132,7 @@ public class WildschutzModel extends AbstractModel {
 			kostenMaterialAbbau = kostenMaterialAbbau_proBaum * anzahlPflanzen;
 		}
 		else if (schutztyp == Schutztyp.KUNSTSTOFFKORB) {
-			double zeitaufwandAufbau_minProBaum = 5;
+			double zeitaufwandAufbau_minProBaum = 3;
 			double zeitaufwandUnterhalt_minProBaum = 2;
 			double zeitaufwandAbbau_minProBaum = 3;
 			double kostenMaterialAufbau_proBaum = 0;
@@ -201,6 +201,42 @@ public class WildschutzModel extends AbstractModel {
 			kostenMaterialAufbau = kostenMaterialAufbau_proBaum * anzahlPflanzen;
 			kostenMaterialUnterhalt = 0;
 			kostenMaterialAbbau = 0;
+		}
+		else if (schutztyp == Schutztyp.EINZELSCHUTZ_HOLZ) {
+			double zeitaufwandAufbau_minProBaum = 3;
+			double zeitaufwandUnterhalt_minProBaum = 2;
+			double zeitaufwandAbbau_minProBaum = 0;
+			double kostenMaterialAufbau_proBaum = 0;
+			
+			if (subtyp == Subtyp.REHWILDSICHER) {
+				kostenMaterialAufbau_proBaum = 6.50 + (1 * 0.85);
+			}
+			else {
+				throw new IllegalStateException("unknown subtyp: " + subtyp); //$NON-NLS-1$
+			}
+			
+			zeitaufwandAufbau_min = zeitaufwandAufbau_minProBaum * anzahlPflanzen * F_INDIR * faktorWegzeitenUndPausen;
+			zeitaufwandUnterhalt_min = zeitaufwandUnterhalt_minProBaum * anzahlPflanzen * F_INDIR * faktorWegzeitenUndPausen;
+			zeitaufwandAbbau_min = zeitaufwandAbbau_minProBaum * anzahlPflanzen * F_INDIR * faktorWegzeitenUndPausen;
+
+			kostenMaterialAufbau = kostenMaterialAufbau_proBaum * anzahlPflanzen;
+			kostenMaterialUnterhalt = 0;
+			kostenMaterialAbbau = 0;
+		}
+		else if (schutztyp == Schutztyp.TRIEBSCHUTZMANSCHETTE) {
+			double zeitaufwandAufbau_minProBaum = 0.5;
+			double zeitaufwandUnterhalt_minProBaum = 0.2;
+			double zeitaufwandAbbau_minProBaum = 0.2;
+			double kostenMaterialAufbau_proBaum = 0.2;
+			double kostenMaterialAbbau_proBaum = 0.01;
+			
+			zeitaufwandAufbau_min = zeitaufwandAufbau_minProBaum * anzahlPflanzen * F_INDIR * faktorWegzeitenUndPausen;
+			zeitaufwandUnterhalt_min = zeitaufwandUnterhalt_minProBaum * anzahlPflanzen * F_INDIR * faktorWegzeitenUndPausen;
+			zeitaufwandAbbau_min = zeitaufwandAbbau_minProBaum * anzahlPflanzen * F_INDIR * faktorWegzeitenUndPausen;
+
+			kostenMaterialAufbau = kostenMaterialAufbau_proBaum * anzahlPflanzen;
+			kostenMaterialUnterhalt = 0;
+			kostenMaterialAbbau = kostenMaterialAbbau_proBaum * anzahlPflanzen;
 		}
 		else if (schutztyp == Schutztyp.CHEMISCHER_SCHUTZ) {
 			double zeitaufwandAufbau_minProBaum = 5;
@@ -314,6 +350,8 @@ public class WildschutzModel extends AbstractModel {
 		KUNSTSTOFFKORB,
 		DRAHTKORB_LEICHT,
 		DRAHTKORB_MASSIV,
+		EINZELSCHUTZ_HOLZ,
+		TRIEBSCHUTZMANSCHETTE,
 		CHEMISCHER_SCHUTZ,
 		SCHAELSCHUTZ,
 		FLAECHENSCHUTZ;
@@ -332,6 +370,12 @@ public class WildschutzModel extends AbstractModel {
 				
 			case DRAHTKORB_MASSIV:
 				return Messages.getString("Wildschutz.Schutztyp.DrahtkorbMassiv"); //$NON-NLS-1$
+				
+			case EINZELSCHUTZ_HOLZ:
+				return Messages.getString("Wildschutz.Schutztyp.EinzelschutzHolz"); //$NON-NLS-1$
+				
+			case TRIEBSCHUTZMANSCHETTE:
+				return Messages.getString("Wildschutz.Schutztyp.Triebschutzmanschette"); //$NON-NLS-1$
 				
 			case CHEMISCHER_SCHUTZ:
 				return Messages.getString("Wildschutz.Schutztyp.ChemischerSchutz"); //$NON-NLS-1$
@@ -415,7 +459,8 @@ public class WildschutzModel extends AbstractModel {
 						REHWILDSICHER_NICHT_ABBAUBAR,
 						ROTWILDSICHER_ABBAUBAR,
 						ROTWILDSICHER_NICHT_ABBAUBAR};
-				
+			
+			case EINZELSCHUTZ_HOLZ:
 			case KUNSTSTOFFKORB:
 				return new Subtyp[]{
 						REHWILDSICHER};
@@ -426,6 +471,7 @@ public class WildschutzModel extends AbstractModel {
 				
 			case CHEMISCHER_SCHUTZ:
 			case SCHAELSCHUTZ:
+			case TRIEBSCHUTZMANSCHETTE:
 				return new Subtyp[]{};
 				
 			case FLAECHENSCHUTZ:

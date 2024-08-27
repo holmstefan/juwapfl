@@ -29,7 +29,7 @@ import ch.wsl.fps.juwapfl.gui.main.AbstractMainWindow;
 import ch.wsl.fps.juwapfl.gui.main.PflanzungMainWindow;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Baumart;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanztechnik;
-import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzverfahren;
+import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzwerkzeug;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Schwierigkeitsgrad;
 
 /**
@@ -47,7 +47,7 @@ public class PflanzungPanel extends AbstractInputPanel {
 	private final JLabel lblBaumart = new JLabel(Messages.getString("Pflanzung.Baumart")); //$NON-NLS-1$
 
 	private final JSpinner txtAnzahlPflanzen = new JSpinner(new SpinnerNumberModel(DEFAULT_ANZAHL_PFLANZEN, 0, 10000, 1));
-	private final JComboBox<Pflanzverfahren> cmbPflanzverfahren = new JComboBox<>(Pflanzverfahren.values());
+	private final JComboBox<Pflanzwerkzeug> cmbPflanzwerkzeug = new JComboBox<>(Pflanzwerkzeug.values());
 	private final JComboBox<Pflanztechnik> cmbPflanztechnik = new JComboBox<>(Pflanztechnik.values());
 	private final JComboBox<Baumart> cmbBaumart = new JComboBox<>(Baumart.values());
 	private final JComboBox<Schwierigkeitsgrad> cmbSchwierigkeitsgrad = new JComboBox<>(Schwierigkeitsgrad.values());
@@ -65,8 +65,8 @@ public class PflanzungPanel extends AbstractInputPanel {
 		this.add(new JLabel(Messages.getString("Pflanzung.AnzahlPflanzen"))); //$NON-NLS-1$
 		this.add(Utilities.getPanelWithoutInfoButton(txtAnzahlPflanzen));
 
-		this.add(new JLabel(Messages.getString("Pflanzung.Pflanzverfahren"))); //$NON-NLS-1$
-		this.add(Utilities.getPanelWithoutInfoButton(cmbPflanzverfahren));
+		this.add(new JLabel(Messages.getString("Pflanzung.Pflanzwerkzeug"))); //$NON-NLS-1$
+		this.add(Utilities.getPanelWithoutInfoButton(cmbPflanzwerkzeug));
 		
 		this.add(lblPflanztechnik);
 		this.add(Utilities.getPanelWithoutInfoButton(cmbPflanztechnik));
@@ -77,7 +77,7 @@ public class PflanzungPanel extends AbstractInputPanel {
 		this.add(new JLabel(Messages.getString("Pflanzung.Schwierigkeitsgrad"))); //$NON-NLS-1$
 		this.add(Utilities.getPanelWithoutInfoButton(cmbSchwierigkeitsgrad));
 		
-		cmbPflanzverfahren.setSelectedItem(Pflanzverfahren.getDefault());
+		cmbPflanzwerkzeug.setSelectedItem(Pflanzwerkzeug.getDefault());
 		cmbPflanztechnik.setSelectedItem(Pflanztechnik.getDefault());
 		cmbBaumart.setSelectedItem(Baumart.getDefault());
 		cmbSchwierigkeitsgrad.setSelectedItem(Schwierigkeitsgrad.getDefault());
@@ -89,7 +89,7 @@ public class PflanzungPanel extends AbstractInputPanel {
 
 	private void initListeners() {
 		txtAnzahlPflanzen.addChangeListener(mainWindow.getDefaultChangeListener());
-		cmbPflanzverfahren.addActionListener(mainWindow.getDefaultActionListener());
+		cmbPflanzwerkzeug.addActionListener(mainWindow.getDefaultActionListener());
 		cmbPflanztechnik.addActionListener(mainWindow.getDefaultActionListener());
 		cmbBaumart.addActionListener(mainWindow.getDefaultActionListener());
 		cmbSchwierigkeitsgrad.addActionListener(mainWindow.getDefaultActionListener());
@@ -113,7 +113,7 @@ public class PflanzungPanel extends AbstractInputPanel {
 		
 		// refill combo with correct items
 		cmbPflanztechnik.removeAllItems();
-		Pflanztechnik[] pflanztechniken = Pflanztechnik.getPflanztechniken((Pflanzverfahren) cmbPflanzverfahren.getSelectedItem());
+		Pflanztechnik[] pflanztechniken = Pflanztechnik.getPflanztechniken((Pflanzwerkzeug) cmbPflanzwerkzeug.getSelectedItem());
 		Arrays.asList(pflanztechniken).forEach(item -> cmbPflanztechnik.addItem(item));
 		cmbPflanztechnik.setEnabled(cmbPflanztechnik.getItemCount() > 1);
 		
@@ -129,8 +129,7 @@ public class PflanzungPanel extends AbstractInputPanel {
 		
 		// refill combo with correct items
 		cmbBaumart.removeAllItems();
-		boolean isWinkelpflanzung = cmbPflanzverfahren.getSelectedItem() == Pflanzverfahren.WINKELPFLANZUNG;
-		if (isWinkelpflanzung) {
+		if (isWiedeholzhaueWinkelpflanzung()) {
 			Arrays.asList(Baumart.values()).forEach(item -> cmbBaumart.addItem(item));
 		}
 		cmbBaumart.setEnabled(cmbBaumart.getItemCount() > 1);
@@ -142,12 +141,12 @@ public class PflanzungPanel extends AbstractInputPanel {
 	}
 	
 	private void updateCmbSchwierigkeitsgrad() {
-		boolean isWinkelpflanzung = cmbPflanzverfahren.getSelectedItem() == Pflanzverfahren.WINKELPFLANZUNG;
-		cmbSchwierigkeitsgrad.setEnabled(isWinkelpflanzung == false);
-		if (isWinkelpflanzung && cmbSchwierigkeitsgrad.getItemCount() > 0) {
+		boolean isWiedeholzhaueWinkelpflanzung = isWiedeholzhaueWinkelpflanzung();
+		cmbSchwierigkeitsgrad.setEnabled(isWiedeholzhaueWinkelpflanzung == false);
+		if (isWiedeholzhaueWinkelpflanzung && cmbSchwierigkeitsgrad.getItemCount() > 0) {
 			cmbSchwierigkeitsgrad.removeAllItems();
 		}
-		if (isWinkelpflanzung == false && cmbSchwierigkeitsgrad.getItemCount() == 0) {
+		if (isWiedeholzhaueWinkelpflanzung == false && cmbSchwierigkeitsgrad.getItemCount() == 0) {
 			Arrays.asList(Schwierigkeitsgrad.values()).forEach(item -> cmbSchwierigkeitsgrad.addItem(item));
 			cmbSchwierigkeitsgrad.setSelectedItem(Schwierigkeitsgrad.getDefault());
 		}
@@ -158,8 +157,8 @@ public class PflanzungPanel extends AbstractInputPanel {
 		return (Integer) txtAnzahlPflanzen.getValue();
 	}
 	
-	public Pflanzverfahren getPflanzverfahren() {
-		return cmbPflanzverfahren.getItemAt(cmbPflanzverfahren.getSelectedIndex());
+	public Pflanzwerkzeug getPflanzwerkzeug() {
+		return cmbPflanzwerkzeug.getItemAt(cmbPflanzwerkzeug.getSelectedIndex());
 	}
 	
 	public Pflanztechnik getPflanztechnik() {
@@ -174,6 +173,10 @@ public class PflanzungPanel extends AbstractInputPanel {
 		return cmbSchwierigkeitsgrad.getItemAt(cmbSchwierigkeitsgrad.getSelectedIndex());
 	}
 	
+	public boolean isWiedeholzhaueWinkelpflanzung() {
+		return cmbPflanzwerkzeug.getSelectedItem() == Pflanzwerkzeug.WIEDEHOPFHAUE && cmbPflanztechnik.getSelectedItem() == Pflanztechnik.WINKELPFLANZUNG;
+	}
+	
 
 	@Override
 	public String getAsXmlString() {
@@ -182,7 +185,7 @@ public class PflanzungPanel extends AbstractInputPanel {
 		sb.append("<section name=\"" + Messages.getString("Pflanzung.Titel") + "\"> "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		sb.append(getXmlEntry(Messages.getString("Pflanzung.AnzahlPflanzen"), getAnzahlPflanzen())); //$NON-NLS-1$
-		sb.append(getXmlEntry(Messages.getString("Pflanzung.Pflanzverfahren"), getPflanzverfahren())); //$NON-NLS-1$
+		sb.append(getXmlEntry(Messages.getString("Pflanzung.Pflanzwerkzeug"), getPflanzwerkzeug())); //$NON-NLS-1$
 		sb.append(getXmlEntry(Messages.getString("Pflanzung.Pflanztechnik"), getPflanztechnik())); //$NON-NLS-1$
 		
 		if (cmbBaumart.isEnabled()) {

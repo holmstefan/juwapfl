@@ -74,6 +74,7 @@ public class WildschutzPanel extends AbstractInputPanel {
 		this.add(Utilities.getPanelWithoutInfoButton(txtZaunlaenge_m));
 		
 		cmbSchutztyp.setSelectedItem(Schutztyp.getDefault());
+		cmbSchutztyp.setMaximumRowCount(10);
 		
 		onInputChangedBeforeCalculation();
 		initListeners();

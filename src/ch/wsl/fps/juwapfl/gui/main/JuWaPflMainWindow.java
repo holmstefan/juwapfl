@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -28,8 +29,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.lang.reflect.Constructor;
+import java.net.URI;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ import java.util.Locale;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -61,6 +65,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import ch.wsl.fps.juwapfl.Messages;
+import ch.wsl.fps.juwapfl.gui.JFreeChartPreloader;
 import ch.wsl.fps.juwapfl.gui.JuWaPflExceptionHandler;
 
 
@@ -73,8 +78,8 @@ public class JuWaPflMainWindow extends JFrame {
 	
 	private static final String betaSuffix = " <font size=4 color=red>BETA</font>"; //$NON-NLS-1$
 	private static final boolean isBeta = false;
-	private static final String versionNr = "1.2" + (isBeta ? betaSuffix : ""); //$NON-NLS-1$ //$NON-NLS-2$
-	private static final LocalDate versionDate = LocalDate.of(2023, Month.AUGUST, 17);
+	private static final String versionNr = "1.3" + (isBeta ? betaSuffix : ""); //$NON-NLS-1$ //$NON-NLS-2$
+	private static final LocalDate versionDate = LocalDate.of(2024, Month.AUGUST, 27);
 
 	private static Locale locale = new Locale("de"); //$NON-NLS-1$
 	static {
@@ -86,10 +91,11 @@ public class JuWaPflMainWindow extends JFrame {
 	
 	
 	public static void main(String[] args) {
+		JFreeChartPreloader.preload();
 		AbstractMainWindow.main(args, () -> new JuWaPflMainWindow());
 	}
-	
-	
+
+
 	public JuWaPflMainWindow() {
 		//window properties
 		this.setSize((int) (380 * Math.pow(AbstractMainWindow.SIZE, 0.6) * AbstractMainWindow.WIDTH_FACTOR), (int) (340 * Math.pow(AbstractMainWindow.SIZE, 0.6)));
@@ -201,33 +207,62 @@ public class JuWaPflMainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int fontSize = AbstractMainWindow.SIZE > 1.3 ? 6 : 5;
-				StringBuilder sb = new StringBuilder();
-				sb.append("<html>"); //$NON-NLS-1$
-				sb.append("<b><font size=" + fontSize + " color=#006666>JuWaPfl v" + versionNr + " / " + getJuWaPflDate() + "</font></b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-				sb.append("<br>"); //$NON-NLS-1$
-				sb.append("<b>" + Messages.getString("Common.UeberschriftBereitgestelltDurch") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				sb.append(Messages.getString("Common.EidgForschungsanstaltWSL") + "<br>");  //$NON-NLS-1$//$NON-NLS-2$
-				sb.append("Zürcherstrasse 111<br>"); //$NON-NLS-1$
-				sb.append("CH-8903 Birmensdorf<br>"); //$NON-NLS-1$
-				sb.append("<br>"); //$NON-NLS-1$
+				StringBuilder sb1 = new StringBuilder();
+				sb1.append("<html>"); //$NON-NLS-1$
+				sb1.append("<b><font size=" + fontSize + " color=#006666>JuWaPfl v" + versionNr + " / " + getJuWaPflDate() + "</font></b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				sb1.append("<br>"); //$NON-NLS-1$
+				sb1.append("<b>" + Messages.getString("Common.UeberschriftBereitgestelltDurch") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sb1.append(Messages.getString("Common.EidgForschungsanstaltWSL") + "<br>");  //$NON-NLS-1$//$NON-NLS-2$
+				sb1.append("Zürcherstrasse 111<br>"); //$NON-NLS-1$
+				sb1.append("CH-8903 Birmensdorf<br>"); //$NON-NLS-1$
+				sb1.append("<br>"); //$NON-NLS-1$
 				
-				sb.append("<b>" + Messages.getString("Common.UeberschriftModelle") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				sb.append("Fritz Frutig, Renato Lemm, Peter Ammann, Oliver Thees, Anton Bürgi<br>"); //$NON-NLS-1$
-				sb.append("<br>"); //$NON-NLS-1$
+				sb1.append("<b>" + Messages.getString("Common.UeberschriftModelle") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sb1.append("Janine Schweier, Marc Werder, Fritz Frutig, Renato Lemm, Peter Ammann, Oliver Thees, Anton Bürgi<br>"); //$NON-NLS-1$
+				sb1.append("<br>"); //$NON-NLS-1$
 				
-				sb.append("<b>" + Messages.getString("Common.UeberschriftSoftwareentwicklung") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				sb.append("\tStefan Holm<br>"); //$NON-NLS-1$
-				sb.append("<br>"); //$NON-NLS-1$
+				sb1.append("<b>" + Messages.getString("Common.UeberschriftSoftwareentwicklung") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sb1.append("\tStefan Holm<br>"); //$NON-NLS-1$
+				sb1.append("<br>"); //$NON-NLS-1$
 				
-				sb.append("<b>" + Messages.getString("Common.UeberschriftUebersetzungen") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				sb.append("\tFritz Frutig<br>"); //$NON-NLS-1$
-				sb.append("<br>"); //$NON-NLS-1$
+				sb1.append("<b>" + Messages.getString("Common.UeberschriftUebersetzungen") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sb1.append("\tFritz Frutig, François Fahrni, Janine Schweier, Fabrizio Cioldi<br>"); //$NON-NLS-1$
+				sb1.append("<br>"); //$NON-NLS-1$
 				
-				sb.append("<b>" + Messages.getString("Common.UeberschriftZitierung") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				sb.append("\t" + Messages.getString("Common.EidgForschungsanstaltWSL") + ", " + versionDate.getYear() + ": " + Messages.getString("Common.Zitierung") + ", " + Messages.getString("Common.Version") + " " + versionNr + "<br><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
-				sb.append("</html>"); //$NON-NLS-1$
+				sb1.append("<b>" + Messages.getString("Common.UeberschriftZitierung") + "</b><br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sb1.append("\t- " + Messages.getString("Common.EidgForschungsanstaltWSL") + ", " + versionDate.getYear() + ": " + Messages.getString("Common.Zitierung") + ", " + Messages.getString("Common.Version") + " " + versionNr + "<br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
+				sb1.append("</html>"); //$NON-NLS-1$
+				JLabel label1 = new JLabel(sb1.toString());
+
+
+				StringBuilder sb2 = new StringBuilder();
+				sb2.append("<html>\t- <u style=\"color:blue;\">Holm, S., Werder, M., Thees, O., Lemm, R., & Schweier, J. (2023). JuWaPfl: A decision support tool </u><br>&nbsp;&nbsp;&nbsp;<u style=\"color:blue;\">to estimate times and costs of processes related to young-forest maintenance. SoftwareX, 24, 101581.</u><br><br>"); //$NON-NLS-1$ //$NON-NLS-2$
+				sb2.append("</html>"); //$NON-NLS-1$
+				JLabel label2 = new JLabel(sb2.toString());
+				label2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				label2.addMouseListener(new MouseAdapter() {
+				    @Override
+				    public void mouseClicked(MouseEvent e) {
+				        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+				        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+				            try {
+//				            	URI uri = new URI("https://doi.org/10.1016/j.softx.2023.101581");
+				            	URI uri = new URI("https://www.sciencedirect.com/science/article/pii/S2352711023002777");
+				                desktop.browse(uri);
+				            } catch (Exception e1) {
+				                e1.printStackTrace();
+				            }
+				        }
+				    }
+				});
+
 				
-				JOptionPane.showMessageDialog(JuWaPflMainWindow.this, sb.toString(), Messages.getString("Common.MenuInfo"), JOptionPane.NO_OPTION); //$NON-NLS-1$
+				JPanel panel = new JPanel();
+				panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+				panel.add(label1);
+				panel.add(label2);
+				
+				JOptionPane.showMessageDialog(JuWaPflMainWindow.this, panel, Messages.getString("Common.MenuInfo"), JOptionPane.NO_OPTION); //$NON-NLS-1$
 			}			
 		};
 		menuHelp.add(aMenuInfo);	
@@ -396,6 +431,13 @@ public class JuWaPflMainWindow extends JFrame {
 				public Void doInBackground() {
 	    			try {
 	    				// this is not done in the EDT since otherwise lblWait is not properly animated.
+	    				if (WildschutzMainWindow.class == clazz && JFreeChartPreloader.hasFinished() == false) {
+    						System.out.println(LocalTime.now() + ": waiting for JFreeChartPreloader to finish...");
+	    					while(JFreeChartPreloader.hasFinished() == false) {
+	    						Thread.sleep(100);
+	    					}
+    						System.out.println(LocalTime.now() + ": JFreeChartPreloader finished");
+	    				}
 	    				Constructor<? extends AbstractMainWindow> constructor = clazz.getConstructor();
 	    				constructor.newInstance();
 	    			} 

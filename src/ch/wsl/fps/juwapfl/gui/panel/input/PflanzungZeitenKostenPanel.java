@@ -31,7 +31,7 @@ import ch.wsl.fps.juwapfl.gui.main.PflanzungMainWindow;
 import ch.wsl.fps.juwapfl.model.PflanzungModel;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Baumart;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanztechnik;
-import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzverfahren;
+import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzwerkzeug;
 import ch.wsl.fps.juwapfl.model.PflanzungModel.Schwierigkeitsgrad;
 import ch.wsl.fps.juwapfl.model.PflanzungWinkelpflanzungModel;
 
@@ -72,7 +72,7 @@ public class PflanzungZeitenKostenPanel extends AbstractInputPanel implements Cu
 		AbstractMainWindow.adjustJSpinnerFormatter(txtZeitUnterhalt_Prozent, false);
 	}
 	
-	private Pflanzverfahren pflanzverfahren;
+	private Pflanzwerkzeug pflanzwerkzeug;
 	private Pflanztechnik pflanztechnik;
 	private Baumart baumart;
 	private Schwierigkeitsgrad schwierigkeit;
@@ -140,12 +140,12 @@ public class PflanzungZeitenKostenPanel extends AbstractInputPanel implements Cu
 	}
 
 	
-	public void onInputChangedBeforeCalculation(Pflanzverfahren pflanzverfahren, Pflanztechnik pflanztechnik, Baumart baumart, Schwierigkeitsgrad schwierigkeit, PflanzungWinkelpflanzungModel winkelpflanzungModel) {
-		if (this.pflanzverfahren != pflanzverfahren || this.pflanztechnik != pflanztechnik || this.baumart != baumart || this.schwierigkeit != schwierigkeit) {
-			txtKostenProPflanze.setValue(PflanzungModel.getDefaultKostenProPflanze(pflanzverfahren, pflanztechnik));
-			txtZeitPflanzung_PflProH.setValue(PflanzungModel.getDefaultZeitaufwandPflanzung_PflProH(pflanzverfahren, pflanztechnik, baumart, schwierigkeit, winkelpflanzungModel));
-			txtAnteilMaschinenlaufzeit_Prz.setValue(PflanzungModel.getDefaultAnteilMaschinenlaufzeit_Prz(pflanzverfahren, pflanztechnik, schwierigkeit));
-			txtKostensatzGeraet_proH.setValue(PflanzungModel.getDefaultKostensatzGeraet_proH(pflanzverfahren, pflanztechnik));
+	public void onInputChangedBeforeCalculation(Pflanzwerkzeug pflanzwerkzeug, Pflanztechnik pflanztechnik, Baumart baumart, Schwierigkeitsgrad schwierigkeit, PflanzungWinkelpflanzungModel winkelpflanzungModel) {
+		if (this.pflanzwerkzeug != pflanzwerkzeug || this.pflanztechnik != pflanztechnik || this.baumart != baumart || this.schwierigkeit != schwierigkeit) {
+			txtKostenProPflanze.setValue(PflanzungModel.getDefaultKostenProPflanze(pflanzwerkzeug, pflanztechnik));
+			txtZeitPflanzung_PflProH.setValue(PflanzungModel.getDefaultZeitaufwandPflanzung_PflProH(pflanzwerkzeug, pflanztechnik, baumart, schwierigkeit, winkelpflanzungModel));
+			txtAnteilMaschinenlaufzeit_Prz.setValue(PflanzungModel.getDefaultAnteilMaschinenlaufzeit_Prz(pflanzwerkzeug, pflanztechnik, schwierigkeit));
+			txtKostensatzGeraet_proH.setValue(PflanzungModel.getDefaultKostensatzGeraet_proH(pflanzwerkzeug, pflanztechnik));
 			
 			if (mainWindow.isInitializing == false) {
 				txtKostenProPflanze.flash();
@@ -155,7 +155,7 @@ public class PflanzungZeitenKostenPanel extends AbstractInputPanel implements Cu
 			}
 		}
 		else if (this.winkelpflanzungModel.equals(winkelpflanzungModel) == false) {
-			txtZeitPflanzung_PflProH.setValue(PflanzungModel.getDefaultZeitaufwandPflanzung_PflProH(pflanzverfahren, pflanztechnik, baumart, schwierigkeit, winkelpflanzungModel));
+			txtZeitPflanzung_PflProH.setValue(PflanzungModel.getDefaultZeitaufwandPflanzung_PflProH(pflanzwerkzeug, pflanztechnik, baumart, schwierigkeit, winkelpflanzungModel));
 			
 			if (mainWindow.isInitializing == false) {
 				txtZeitPflanzung_PflProH.flash();
@@ -163,7 +163,7 @@ public class PflanzungZeitenKostenPanel extends AbstractInputPanel implements Cu
 		}
 		
 		// update fields
-		this.pflanzverfahren = pflanzverfahren;
+		this.pflanzwerkzeug = pflanzwerkzeug;
 		this.pflanztechnik = pflanztechnik;
 		this.baumart = baumart;
 		this.schwierigkeit = schwierigkeit;

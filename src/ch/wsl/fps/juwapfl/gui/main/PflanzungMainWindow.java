@@ -31,7 +31,6 @@ import ch.wsl.fps.juwapfl.gui.panel.input.PflanzungWinkelpflanzungPanel;
 import ch.wsl.fps.juwapfl.gui.panel.input.PflanzungZeitenKostenPanel;
 import ch.wsl.fps.juwapfl.model.PflanzungErgebnis;
 import ch.wsl.fps.juwapfl.model.PflanzungModel;
-import ch.wsl.fps.juwapfl.model.PflanzungModel.Pflanzverfahren;
 
 /**
  * 
@@ -114,7 +113,7 @@ public class PflanzungMainWindow extends AbstractMainWindow {
 		String xmlEingaben = "<eingaben>"; //$NON-NLS-1$
 		xmlEingaben += panelPflanzung.getAsXmlString();
 		
-		if (panelPflanzung.getPflanzverfahren() == Pflanzverfahren.WINKELPFLANZUNG) {
+		if (panelPflanzung.isWiedeholzhaueWinkelpflanzung()) {
 			xmlEingaben += panelPflanzungWinkelpflanzung.getAsXmlString();
 		}
 
@@ -153,14 +152,13 @@ public class PflanzungMainWindow extends AbstractMainWindow {
 	protected void onInputChangedBeforeCalculation() {
 		panelPflanzung.onInputChangedBeforeCalculation();
 		panelPflanzungZeitenKosten.onInputChangedBeforeCalculation(
-				panelPflanzung.getPflanzverfahren(), 
+				panelPflanzung.getPflanzwerkzeug(), 
 				panelPflanzung.getPflanztechnik(),  
 				panelPflanzung.getBaumart(), 
 				panelPflanzung.getSchwierigkeitsgrad(),
 				panelPflanzungWinkelpflanzung.getWinkelpflanzungModel());
 		
-		boolean isWinkelpflanzung = panelPflanzung.getPflanzverfahren() == Pflanzverfahren.WINKELPFLANZUNG;
-		panelPflanzungWinkelpflanzung.setEnabled(isWinkelpflanzung);
+		panelPflanzungWinkelpflanzung.setEnabled(panelPflanzung.isWiedeholzhaueWinkelpflanzung());
 	}
 
 	
@@ -169,7 +167,7 @@ public class PflanzungMainWindow extends AbstractMainWindow {
 		PflanzungModel model = new PflanzungModel();
 		
 		model.setAnzahlPflanzen(panelPflanzung.getAnzahlPflanzen());
-		model.setPflanzverfahren(panelPflanzung.getPflanzverfahren());
+		model.setPflanzwerkzeug(panelPflanzung.getPflanzwerkzeug());
 		model.setPflanztechnik(panelPflanzung.getPflanztechnik());
 		model.setBaumart(panelPflanzung.getBaumart());
 		model.setSchwierigkeitsgrad(panelPflanzung.getSchwierigkeitsgrad());
